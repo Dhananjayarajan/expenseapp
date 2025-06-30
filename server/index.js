@@ -5,12 +5,18 @@ const session = require('express-session');
 const passport = require('passport');
 const fs = require('fs');
 const cors = require('cors');
+const path = require('path');
 
 mongoose.connect(process.env.MONGO_URI);
 const app = express();
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://expense-tracker-myju.onrender.com',
+];
+
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: allowedOrigins,
     credentials: true,
   })
 );
